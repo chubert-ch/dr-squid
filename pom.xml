@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
     <name>dr-squid-parent</name>
     <artifactId>dr-squid-parent</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0</version>
 
     <description>Chaos and resiliency testing framework for Spring Boot applications</description>
 
@@ -277,7 +277,7 @@
                     </headerDefinitions>
                     <properties>
                         <owner>Expedia, Inc.</owner>
-                        <currentYear>${current.year}</currentYear>
+                        <currentYear>2024</currentYear>
                     </properties>
                     <includes>
                         <include>src/main/java/**</include>
@@ -295,6 +295,31 @@
                     </execution>
                 </executions>
             </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.22.0</version>
+        </plugin>
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.7</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <!-- attached to Maven test phase -->
+                <execution>
+                    <id>report</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
         </plugins>
 
         <pluginManagement>
@@ -369,7 +394,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
